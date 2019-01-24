@@ -1,6 +1,7 @@
 package lab8;
 
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class CallThemOut {
 
@@ -16,23 +17,30 @@ public class CallThemOut {
 
 		while (true) {
 			try {
-
+				try {
 				// Prompt the user about the student selection
 				System.out.println("Welcome to Java class! Which student would you like to learn more about? "
 						+ "(Enter a number between: 1-7):");
 				choice = userInput.nextInt();
-
+				
+			} catch (InputMismatchException e) {
+				System.out.println("This is not a number");
+				break;
+			}
 				System.out.println(stuNames[choice - 1]);
 				// Find student's info
 				// first find student's name
 				// then ask if they want to find out about
 				System.out.println("The student number " + (choice) + " is " + stuNames[choice - 1] + "!");
 				break;
+			
 
 			} catch (IndexOutOfBoundsException e) {
 				System.out.println("This student does not exist. Please try again. (enter number: 1-7): ");
 			}
-		}
+		} 
+			
+		
 		boolean again = true;
 
 		do {
@@ -59,8 +67,9 @@ public class CallThemOut {
 		} while (again);
 		System.out.println("Thanks!");
 	}
-
+	
 	public static void Question(String input, String[] stuNames, String[] homeTown, String[] favoriteFood, int choice) {
+
 		if (input.equalsIgnoreCase("hometown")) {
 			System.out.println(stuNames[choice - 1] + " is from " + homeTown[choice - 1] + "!");
 
@@ -72,7 +81,7 @@ public class CallThemOut {
 
 		}
 	}
-
+}
 //		String more = "y";
 //		if (more.equalsIgnoreCase("y")) {
 //
@@ -87,6 +96,6 @@ public class CallThemOut {
 //
 //		} else {
 //			System.out.println("Wow! You were so nosey!");
-}
+
 // hometown or favorite food, then print it
 // ask if they would like to find out about another student
