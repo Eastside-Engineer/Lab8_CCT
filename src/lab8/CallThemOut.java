@@ -18,36 +18,36 @@ public class CallThemOut {
 		while (true) {
 			try {
 				try {
-				// Prompt the user about the student selection
-				System.out.println("Welcome to Java class! Which student would you like to learn more about? "
-						+ "(Enter a number between: 1-7):");
-				choice = userInput.nextInt();
-				
-			} catch (InputMismatchException e) {
-				System.out.println("This is not a number");
-				break;
-			}
+					// Prompt the user about the student selection
+					System.out.println("Welcome to Java class! Which student would you like to learn more about? "
+							+ "(Enter a number between: 1-7):");
+					choice = userInput.nextInt();
+					userInput.nextLine();
+				} catch (InputMismatchException e) {
+					System.out.println("This is not a number");
+					userInput.nextLine();
+					continue;
+				}
 				System.out.println(stuNames[choice - 1]);
 				// Find student's info
 				// first find student's name
 				// then ask if they want to find out about
 				System.out.println("The student number " + (choice) + " is " + stuNames[choice - 1] + "!");
 				break;
-			
 
 			} catch (IndexOutOfBoundsException e) {
 				System.out.println("This student does not exist. Please try again. (enter number: 1-7): ");
+
 			}
-		} 
-			
-		
+		}
+
 		boolean again = true;
 
 		do {
 			while (true) {
 				System.out.println("What would you like to know about " + stuNames[choice - 1]
 						+ "? (enter 'hometown' or " + "'favoritefood')");
-				String wannaKnow = userInput.next();
+				String wannaKnow = userInput.nextLine();
 
 				try {
 					Question(wannaKnow, stuNames, homeTown, favoriteFood, choice);
@@ -57,7 +57,7 @@ public class CallThemOut {
 				}
 			}
 			System.out.println("Would you like to know more? (enter 'yes' or 'no'):");
-			String answer = userInput.next();
+			String answer = userInput.nextLine();
 			if (answer.equalsIgnoreCase("yes")) {
 				continue;
 			} else {
@@ -67,7 +67,7 @@ public class CallThemOut {
 		} while (again);
 		System.out.println("Thanks!");
 	}
-	
+
 	public static void Question(String input, String[] stuNames, String[] homeTown, String[] favoriteFood, int choice) {
 
 		if (input.equalsIgnoreCase("hometown")) {
